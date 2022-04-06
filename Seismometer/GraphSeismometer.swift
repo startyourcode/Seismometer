@@ -12,17 +12,8 @@ struct GraphSeismometer: View {
     @State private var data = [Double]()
     let maxData = 1000
 
-    @State private var sensitivity = 0.0
-    let graphMaxValueMostSensitive = 0.01
-    let graphMaxValueLeastSensitive = 1.0
-
-    var graphMaxValue: Double {
-        graphMaxValueMostSensitive + (1 - sensitivity) * (graphMaxValueLeastSensitive - graphMaxValueMostSensitive)
-    }
-
-    var graphMinValue: Double {
-        -graphMaxValue
-    }
+    let graphMaxValue = 1.0
+    let graphMinValue = -1.0
 
     var body: some View {
         VStack {
@@ -33,16 +24,6 @@ struct GraphSeismometer: View {
                 .cornerRadius(20)
                 .padding()
                 .aspectRatio(1, contentMode: .fit)
-            
-            Spacer()
-            
-            Text("Sensitivity")
-                .font(.headline)
-            
-            Slider(value: $sensitivity, in: 0...1, minimumValueLabel: Text("Min"), maximumValueLabel: Text("Max")) {
-                Text("Sensitivity")
-            }
-            .padding()
             
             Spacer()
             
